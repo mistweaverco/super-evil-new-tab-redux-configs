@@ -1,0 +1,24 @@
+name: checks
+on:
+  pull_request:
+
+  push:
+    branches:
+      - main
+
+
+jobs:
+  check:
+    name: lint
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: apt install -y jq
+
+      - name: Lint
+        run: ./scripts/lint.sh
+
